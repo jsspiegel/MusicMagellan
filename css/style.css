@@ -1,0 +1,238 @@
+@font-face{
+  font-family: Proxima Nova;
+  src: url(/fonts/ProximaNova-Regular.otf);
+}
+
+*{
+  font-family: Proxima Nova;
+}
+#inner *{
+  margin: 5px auto;
+  text-align: center;
+}
+
+#brand:hover{
+  cursor: default;
+}
+
+#ifYouLike{
+  font-size: 16px;
+}
+
+#newArtistName{
+  font-size: 30px;
+  color: black;
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#newArtistName:hover{
+  color: rgb(75,75,75);
+}
+
+#spotifyIF{
+  display: block;
+  border: 5px solid black;
+}
+
+#login{
+  position: relative;
+  top: 14px;
+  display: none;
+}
+
+#loggedIn{
+  display: none;
+}
+
+#loggedIn:hover{
+/*   cursor: pointer; */
+}
+
+#container{
+/*   border: 1px solid black; */
+  width: 1200px;
+  height: 500px;
+  position: relative;
+  top: 0px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#wrapper, #artists, #suggestedTracks, #leftArrow, #rightArrow{
+  float: left;
+  position: relative;
+  left: 23px;
+  opacity: 0;
+  transition: left 0.5s, opacity 0.5s;
+}
+
+#leftArrow, #rightArrow{
+  background-color: rgb(150,150,150);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  top: 213px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#leftArrow{
+  left: 24px;
+  position : relative;
+  border-left: 1px solid black;
+}
+
+#rightArrow{
+  left: 22px;
+  border-right: 1px solid black;
+}
+
+#leftArrow img, #rightArrow img{
+  width: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#upArrow, #downArrow{
+  height: 50px;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.5s;
+  animation: pulse 1s ease infinite;
+}
+
+#upArrow{
+  left: 155px;
+  bottom: 15px;
+}
+
+#downArrow{
+  left: 283px;
+  bottom: 7px;
+}
+
+#wrapper{
+  border: 1px solid black;
+  background-color: rgb(150,150,150); 
+  width: 350px;
+  margin: 0 auto;
+/*   position: absolute;
+  top: 122px;
+  right: 37.8%; */
+  display: none;
+  z-index: 1;
+}
+
+#artists{
+  float: left;
+  border: 1px solid black;
+/*   position: absolute;
+  right: 62%;
+  top: 122px; */
+  width: 350px;
+  height: 476px;
+  background-color: rgb(150,150,150);
+  z-index: 0;
+}
+
+#artists *{
+  margin: 5px;
+}
+
+#suggestedTracks{
+/*   float: right; */
+  border: 1px solid black;
+/*   position: absolute;
+  right: 14%;
+  top: 122px;  */
+  width: 350px;
+  height: 476px;
+  background-color: rgb(150,150,150);
+  z-index: 0;
+}
+
+#suggestedTracks *{
+  margin: 5px;
+}
+
+#artists #currentArtists, #suggestedTracks #tracks{
+  background-color: white;
+}
+
+#artists h3, #artists form, #suggestedTracks h3{
+  margin: 5px;
+  text-align: center;
+}
+
+#tracks{
+  border: 1px solid black;
+  height: 434px;
+  overflow: scroll;
+}
+
+#currentArtists{
+  border: 1px solid black;
+  height: 393px;
+  overflow: scroll;
+}
+
+.artist{
+  float: left;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(150,150,150); 
+}
+
+.artist *{
+  display: block;
+  float: left;
+}
+
+.x{
+  border-left: 1px solid black;
+  position: relative;
+  right: 3px;
+  top: 2px;
+  padding-left: 10px;
+  height: 14px;
+}
+
+.x:hover{
+  cursor:pointer;
+}
+
+#prof{
+  height: 30px;
+  position: relative;
+  top: 9px;
+  right: 150px;
+  border-radius: 5px;
+  transition: right 0.5s;
+}
+
+#profName{
+  position: relative;
+  left: 30px;
+  transition: left 0.5s;
+}
+
+#inner{
+  margin: 10px;
+}
