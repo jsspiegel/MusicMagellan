@@ -234,9 +234,9 @@ $(function() {
           $("#spotifyIF").attr("src",source);
           $("#tracks ul").html("");
           console.log(suggested.length);
-          if(suggested.length > 53){
+          if(suggested.length > 50){
             console.log("Erased");
-            suggested.splice(0,suggested.length - 53);
+            suggested.splice(0,suggested.length - 50);
           }
           Parse.User.current().set("suggested", suggested);
           Parse.User.current().save(null,{});
