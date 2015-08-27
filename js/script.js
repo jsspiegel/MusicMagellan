@@ -2,6 +2,7 @@ var liked = [];
 var suggested = [];
 var loggedIn = false;
 var currentUser;
+//test
 
 $(function() {
   Parse.initialize("2AFS6ex13gyYwQUmnyqbn13TktfW8IXLoJmWn96X", "2T1UgMovX2D0Qf7kbgrEp66Zz9srMAMkD61rtc1i");
@@ -117,6 +118,7 @@ $(function() {
       $("#login").css("display","none");
       $("#profName").html(response.name);
       loggedIn = true;
+      var query = new Parse.Query(Parse.User);
       Parse.User.logIn(response.id, "password", {
         success: function(user) {
           currentUser = Parse.User.current();
@@ -144,12 +146,14 @@ $(function() {
           var user = new Parse.User();
           user.set("username", response.id);
           user.set("password", "password");
+          user.set("name", response.name);
           user.set("suggested", suggested);
           user.set("liked", liked);
           user.signUp(null, {
             success: function(userData) {
                currentUser = user;
                $("#wrapper").css("display","none");
+               location.reload();
             },
             error: function(user, error) {
               alert("Error: " + error.code + " " + error.message);
@@ -157,59 +161,6 @@ $(function() {
           });
         }
       });
-      /*if (currentUser == null) {
-       var user = new Parse.User();
-        user.set("username", response.id);
-        user.set("password", "password");
-        user.set("suggested", suggested);
-        user.set("liked", liked);
-          user.signUp(null, {
-            success: function(userData) {
-               currentUser = user;
-               $("#wrapper").css("display","none");
-            },
-            error: function(user, error) {
-              alert("!!Error: " + error.code + " " + error.message);
-            }
-          });
-      } else{
-        console.log(currentUser);
-        liked = Parse.User.current()["attributes"]["liked"];
-        suggested = Parse.User.current()["attributes"]["suggested"];
-        if(liked.length == 0){
-          $("#wrapper").css("display","none");
-        } else{
-          $("#wrapper").css("display","block");
-          liked = liked.sort();
-          for(var j = 0; j<liked.length; j++){
-              $("#currentArtists").append("<div class='artist'><p>" + liked[j] + "</p><img src='images/X.png' class='x'></div>");
-            }
-          loadSpotifyData();
-        }
-      }*/
-      
-      
-//       var query = new Parse.Query(Parse.User);
-//       query.equalTo("username", response.id);
-//       query.find({
-//         success: function(result) {
-//         },
-//         error: function(error) {
-//           var user = new Parse.User();
-//           user.set("username", response.id);
-//           user.set("password", "password");
-//           user.set("liked", liked);
-//           user.signUp(null, {
-//             success: function(user) {
-//               // Hooray! Let them use the app now.
-//             },
-//             error: function(user, error) {
-//               // Show the error message somewhere and let the user try again.
-//               alert("Error: " + error.code + " " + error.message);
-//             }
-//           });
-//         }
-//       });
       
       $.getJSON("https://graph.facebook.com/" + response.id + "/picture?type=large&redirect=false", function(response){
         $("#prof").attr("src",response["data"]["url"]);
@@ -229,14 +180,19 @@ $(function() {
         $("#newArtistName").attr("href", newArtist["external_urls"]["spotify"]);
         $.getJSON("https://api.spotify.com/v1/artists/" + dataTwo["artists"][randomNum]["id"] + "/top-tracks?country=US", function(dataThree){
           var randomTrack = Math.floor(Math.random()*dataThree["tracks"].length);
-          suggested.push(dataThree["tracks"][randomTrack]);
+          suggested.push({
+            "trackName": dataThree["tracks"][randomTrack]["name"],
+            "artistName": dataThree["tracks"][randomTrack]["artists"][0]["name"],
+            "trackUrl": dataThree["tracks"][randomTrack]["external_urls"]["spotify"],
+            "artistUrl": dataThree["tracks"][randomTrack]["artists"][0]["external_urls"]["spotify"],
+          });
           var source = "https://embed.spotify.com/?uri=" + dataThree["tracks"][randomTrack]["uri"];
           $("#spotifyIF").attr("src",source);
           $("#tracks ul").html("");
           console.log(suggested.length);
-          if(suggested.length > 50){
+          if(suggested.length > 600){
             console.log("Erased");
-            suggested.splice(0,suggested.length - 50);
+            suggested.splice(0,suggested.length - 600);
           }
           Parse.User.current().set("suggested", suggested);
           Parse.User.current().save(null,{});
@@ -245,7 +201,7 @@ $(function() {
           var l;
           for(var k=0; k<suggested.length-1; k++){
             l = suggestedLength - (k+2);
-            $("#tracks").append("<p id='trackLi'><a href=" + suggested[l]["external_urls"]["spotify"] + ">" + suggested[l]["name"] + "</a>by<a href=" + suggested[l]["artists"][0]["external_urls"]["spotify"] + ">" + suggested[l]["artists"][0]["name"] + "</a></p><hr>");
+            $("#tracks").append("<p id='trackLi'><a href=" + suggested[l]["trackUrl"] + " target='_blank'>" + suggested[l]["trackName"] + "</a>by<a href=" + suggested[l]["artistUrl"] + " target='_blank'>" + suggested[l]["artistName"] + "</a></p><hr>");
           }
           $("#wrapper").css("opacity","1");
           $("#artists").css("opacity","1");
