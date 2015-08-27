@@ -2,7 +2,6 @@ var liked = [];
 var suggested = [];
 var loggedIn = false;
 var currentUser;
-//test
 
 $(function() {
   Parse.initialize("2AFS6ex13gyYwQUmnyqbn13TktfW8IXLoJmWn96X", "2T1UgMovX2D0Qf7kbgrEp66Zz9srMAMkD61rtc1i");
