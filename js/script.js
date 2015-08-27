@@ -63,7 +63,6 @@ $(function() {
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-    console.log("Hit");
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
@@ -188,15 +187,15 @@ $(function() {
           var source = "https://embed.spotify.com/?uri=" + dataThree["tracks"][randomTrack]["uri"];
           $("#spotifyIF").attr("src",source);
           $("#tracks ul").html("");
-          console.log(suggested.length);
+          //console.log(suggested.length);
           if(suggested.length > 600){
-            console.log("Erased");
+            //console.log("Erased");
             suggested.splice(0,suggested.length - 600);
           }
           Parse.User.current().set("suggested", suggested);
           Parse.User.current().save(null,{});
           var suggestedLength = suggested.length;
-          console.log(suggestedLength);
+          //console.log(suggestedLength);
           var l;
           for(var k=0; k<suggested.length-1; k++){
             l = suggestedLength - (k+2);
@@ -262,36 +261,26 @@ $(function() {
   });
   
   $("#leftArrow").click(function(){
-    console.log($("#leftArrow").css("left"));
-    if($("#leftArrow").offset().left == 144){
-      console.log("testing!");
+    //console.log($("#leftArrow").css("left"));
+    if($("#leftArrow").css("left") == "24px"){
       $("#leftArrow").css("left", "374px");
       $("#artists").css("left", "373px");
     }
-    else if($("#leftArrow").offset().left == 494){
-      console.log("We have a bigger problem");
+    else if($("#leftArrow").css("left") == "374px"){
       $("#leftArrow").css("left", "24px");
       $("#artists").css("left", "23px");
     }
   });
   
   $("#rightArrow").click(function(){
-    console.log($("#rightArrow").offset().left);
-    if(Math.floor($("#rightArrow").offset().left) == 1243){
+    //console.log($("#rightArrow").offset().left);
+    if($("#rightArrow").css("left") == "22px"){
       $("#rightArrow").css("left", "-328px");
       $("#suggestedTracks").css("left", "-327px");
     }
-    else if(Math.floor($("#rightArrow").offset().left) == 893){
+    else if($("#rightArrow").css("left") == "-328px"){
       $("#rightArrow").css("left", "22px");
       $("#suggestedTracks").css("left", "23px");
     }
   });
-  
-//   $("#loggedIn").hover(function(){
-//     $("#prof").css("right","140px");
-//     $("#profName").css("left","40px");
-//     }, function(){
-//     $("#prof").css("right","150px");
-//     $("#profName").css("left","30px");
-// }); 
 });
