@@ -9,6 +9,7 @@ $(function() {
   Parse.User.logOut();
   
   setInterval(function(){
+    $("#downArrow").offset({left: $("#artists").offset().left + 142});
     if(loggedIn == true && $("#upArrow").css("opacity") == 1) {
       //console.log("Interval Hit");
       testAPI();
@@ -186,7 +187,7 @@ $(function() {
           });
           var source = "https://embed.spotify.com/?uri=" + dataThree["tracks"][randomTrack]["uri"];
           $("#spotifyIF").attr("src",source);
-          $("#tracks ul").html("");
+          $("#tracks").html("");
           //console.log(suggested.length);
           if(suggested.length > 600){
             //console.log("Erased");
@@ -197,9 +198,10 @@ $(function() {
           var suggestedLength = suggested.length;
           //console.log(suggestedLength);
           var l;
-          for(var k=0; k<suggested.length-1; k++){
+          for(var k=0; k<suggestedLength-1; k++){
             l = suggestedLength - (k+2);
             $("#tracks").append("<p id='trackLi'><a href=" + suggested[l]["trackUrl"] + " target='_blank'>" + suggested[l]["trackName"] + "</a>by<a href=" + suggested[l]["artistUrl"] + " target='_blank'>" + suggested[l]["artistName"] + "</a></p><hr>");
+            console.log("Hit");
           }
           $("#wrapper").css("opacity","1");
           $("#artists").css("opacity","1");
@@ -283,5 +285,9 @@ $(function() {
       $("#rightArrow").css("left", "22px");
       $("#suggestedTracks").css("left", "23px");
     }
+  });
+  
+  $("#newArtist").click(function(){
+    loadSpotifyData();
   });
 });

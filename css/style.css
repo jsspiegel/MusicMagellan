@@ -31,6 +31,19 @@
   color: rgb(75,75,75);
 }
 
+#newArtist{
+  font-size: 24px;
+  color: black;
+  display: block;
+  padding-top: 8px;
+  transition: color 0.2s;
+}
+
+#newArtist:hover{
+  color: rgb(75,75,75);
+  cursor: pointer;
+}
+
 #spotifyIF{
   display: block;
   border: 5px solid black;
@@ -55,7 +68,7 @@
   width: 1200px;
   height: 500px;
   position: relative;
-  top: 0px;
+  top: 50px;
   margin: 0 auto;
   opacity: 0;
   transition: opacity 0.5s;
@@ -73,7 +86,7 @@
   background-color: rgb(150,150,150);
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  top: 213px;
+  top: 230px;
   z-index: 2;
   cursor: pointer;
 }
@@ -111,7 +124,7 @@
 
 #upArrow, #downArrow{
   height: 50px;
-  position: relative;
+  position: absolute;
   opacity: 0;
   transition: opacity 0.5s;
   animation: pulse 1s ease infinite;
@@ -119,12 +132,12 @@
 
 #upArrow{
   left: 155px;
-  bottom: 15px;
+  top: 45px;
 }
 
 #downArrow{
-  left: 283px;
-  bottom: 7px;
+  left: 335px;
+  top: 62px;
 }
 
 #wrapper{
@@ -146,7 +159,7 @@
   right: 62%;
   top: 122px; */
   width: 350px;
-  height: 476px;
+  height: 523px;
   background-color: rgb(150,150,150);
   z-index: 0;
 }
@@ -162,7 +175,7 @@
   right: 14%;
   top: 122px;  */
   width: 350px;
-  height: 476px;
+  height: 523px;
   background-color: rgb(150,150,150);
   z-index: 0;
 }
@@ -182,13 +195,13 @@
 
 #tracks{
   border: 1px solid black;
-  height: 434px;
+  height: 481px;
   overflow: scroll;
 }
 
 #currentArtists{
   border: 1px solid black;
-  height: 393px;
+  height: 440px;
   overflow: scroll;
 }
 
