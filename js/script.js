@@ -245,6 +245,7 @@ $(function() {
         });
       }
     });
+    $("#newArtistTextbox").attr("value","");
   });
   
   $('.x').live('click', function() {
