@@ -33,8 +33,8 @@ $(function() {
    }(document, 'script', 'facebook-jssdk'));
   
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+//     console.log('statusChangeCallback');
+//     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -110,10 +110,10 @@ $(function() {
   function testAPI() {
     $("#upArrow").css("opacity","0");
     $("#container").css("opacity","1");
-    console.log('Welcome!  Fetching your information.... ');
+//     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      console.log(response);
+//       console.log('Successful login for: ' + response.name);
+//       console.log(response);
       $("#login").css("display","none");
       $("#profName").html(response.name);
       loggedIn = true;
@@ -121,7 +121,7 @@ $(function() {
       Parse.User.logIn(response.id, "password", {
         success: function(user) {
           currentUser = Parse.User.current();
-          console.log(currentUser);
+//           console.log(currentUser);
           liked = Parse.User.current()["attributes"]["liked"];
           suggested = Parse.User.current()["attributes"]["suggested"];
           if(liked.length == 0){
@@ -201,7 +201,7 @@ $(function() {
           for(var k=0; k<suggestedLength-1; k++){
             l = suggestedLength - (k+2);
             $("#tracks").append("<p id='trackLi'><a href=" + suggested[l]["trackUrl"] + " target='_blank'>" + suggested[l]["trackName"] + "</a>by<a href=" + suggested[l]["artistUrl"] + " target='_blank'>" + suggested[l]["artistName"] + "</a></p><hr>");
-            console.log("Hit");
+//             console.log("Hit");
           }
           $("#wrapper").css("opacity","1");
           $("#artists").css("opacity","1");
@@ -230,7 +230,7 @@ $(function() {
         Parse.User.current().set("liked", liked);
         Parse.User.current().save(null,{
           success: function(user){
-            console.log(user);
+//             console.log(user);
             $("#wrapper").css("display","block");
             $("#currentArtists").html("");
             for(var j = 0; j<liked.length; j++){
@@ -241,8 +241,8 @@ $(function() {
             }
           },
           error: function(user, error){
-            console.log(user);
-            console.log(error);
+//             console.log(user);
+//             console.log(error);
           }                      
         });
       }
@@ -254,7 +254,7 @@ $(function() {
     liked = Parse.User.current()["attributes"]["liked"];
     var index = liked.indexOf($(this).parent().find("p").text());
     liked.splice(index,1);
-    console.log(liked);
+//     console.log(liked);
     Parse.User.current().set("liked", liked);
     Parse.User.current().save(null,{});
     $("#currentArtists").html("");
