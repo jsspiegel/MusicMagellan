@@ -168,6 +168,10 @@
   margin: 5px;
 }
 
+#suggestedTracks *{
+  margin: 5px;
+}
+
 #suggestedTracks{
 /*   float: right; */
   border: 1px solid black;
@@ -195,13 +199,15 @@
 
 #tracks{
   border: 1px solid black;
-  height: 481px;
+  position: relative;
+  top: 11px;
+  height: 440px;
   overflow: scroll;
 }
 
 #currentArtists{
   border: 1px solid black;
-  height: 440px;
+  height: 441px;
   overflow: scroll;
 }
 
@@ -231,15 +237,24 @@
   cursor:pointer;
 }
 
+#newArtistTextbox{
+  height: 25px;
+}
+
 #prof{
   height: 30px;
   position: relative;
   top: 9px;
-/*   right: 115px; */
+  right: 10px;
   border-radius: 5px;
 }
 
-#profName{
+#clear{
+  display: block;
+  position: relative;
+  top: 5px;
+/*   height: 25px; */
+  margin: 5px auto;
 }
 
 #inner{

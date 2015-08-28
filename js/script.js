@@ -209,6 +209,10 @@ $(function() {
           $("#rightArrow").css("opacity","1");
           $("#leftArrow").css("opacity","1");
           $("#downArrow").css("opacity","0");
+          $("#artists").css("height", ($("#wrapper").height() + 2).toString());
+          $("#suggestedTracks").css("height", ($("#wrapper").height() + 2).toString());
+          $("#currentArtists").css("height", ($("#wrapper").height() - 80).toString());
+          $("#tracks").css("height", ($("#wrapper").height() - 81).toString());
         });
       });
     });
@@ -289,5 +293,12 @@ $(function() {
   
   $("#newArtist").click(function(){
     loadSpotifyData();
+  });
+  
+  $("#clear").click(function(){
+    $("#tracks").html("");
+    suggested = [];
+    Parse.User.current().set("suggested", suggested);
+    Parse.User.current().save(null,{});
   });
 });
